@@ -1,0 +1,209 @@
+<!-- TopNavBar (Web Only) -->
+<nav class="hidden md:flex justify-between items-center px-8 py-4 w-full mx-auto sticky top-0 bg-[#faf6f0]/80 backdrop-blur-md border-b border-[#4a7c59]/10 shadow-[0_4px_20px_rgba(46,50,48,0.06)] z-50">
+    <!-- Brand -->
+    <a href="/" onclick="toggleDesktopSidebar(event)" class="flex items-center gap-2 text-2xl font-['Literata'] font-black text-[#4a7c59] cursor-pointer hover:opacity-80 transition-opacity">
+        <img src="/static/icons/icon.svg" class="w-8 h-8" alt="Phyto Lab Logo">Terra
+    </a>
+    <!-- Navigation Links -->
+    <div class="flex gap-8 items-center">
+        <!-- We use standard links here, Jinja logic can make them active later -->
+        <a class="flex items-center gap-2 text-[#4a7c59] font-['Literata'] font-bold text-lg tracking-tight hover:text-[#4a7c59] transition-colors duration-300 cursor-pointer active:scale-95 transition-transform" href="/">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">potted_plant</span>
+            Scan
+        </a>
+        <a class="flex items-center gap-2 text-stone-500 font-['Literata'] font-bold text-lg tracking-tight hover:text-[#4a7c59] transition-colors duration-300 cursor-pointer active:scale-95 transition-transform" href="/history">
+            <span class="material-symbols-outlined">history_edu</span>
+            History
+        </a>
+        <a class="flex items-center gap-2 text-stone-500 font-['Literata'] font-bold text-lg tracking-tight hover:text-[#4a7c59] transition-colors duration-300 cursor-pointer active:scale-95 transition-transform" href="/encyclopedia">
+            <span class="material-symbols-outlined">local_library</span>
+            Encyclopedia
+        </a>
+    </div>
+    <!-- Trailing Actions -->
+    <div class="flex gap-4 items-center relative">
+        <!-- PWA Install Button -->
+        <button id="install-pwa-btn" class="text-[#4a7c59] transition-colors duration-300 cursor-pointer active:scale-95 transition-transform p-2 rounded-full hover:bg-[#4a7c59]/10 flex items-center justify-center" title="Install App">
+            <span class="material-symbols-outlined" data-icon="install_desktop">install_desktop</span>
+        </button>
+
+        <!-- Globe / Language Toggle -->
+        <div class="relative">
+            <button onclick="document.getElementById('langDropdown').classList.toggle('hidden')" class="text-[#4a7c59] transition-colors duration-300 cursor-pointer active:scale-95 transition-transform p-2 rounded-full hover:bg-[#4a7c59]/10 flex items-center justify-center">
+                <span class="material-symbols-outlined" data-icon="language">language</span>
+            </button>
+            
+            <!-- Language Dropdown Menu -->
+            <div id="langDropdown" class="hidden absolute right-0 mt-2 w-48 bg-[#faf6f0] rounded-xl shadow-[0_8px_30px_rgba(46,50,48,0.12)] py-2 border border-[#4a7c59]/10 z-[100] font-['Nunito_Sans']">
+                <button onclick="setLanguage('en')" class="block w-full text-left px-4 py-2.5 hover:bg-[#4a7c59]/10 text-stone-700 font-medium transition-colors">English</button>
+                <button onclick="setLanguage('hi')" class="block w-full text-left px-4 py-2.5 hover:bg-[#4a7c59]/10 text-stone-700 font-medium transition-colors">हिंदी (Hindi)</button>
+                <button onclick="setLanguage('es')" class="block w-full text-left px-4 py-2.5 hover:bg-[#4a7c59]/10 text-stone-700 font-medium transition-colors">Español (Spanish)</button>
+                <button onclick="setLanguage('fr')" class="block w-full text-left px-4 py-2.5 hover:bg-[#4a7c59]/10 text-stone-700 font-medium transition-colors">Français (French)</button>
+                <button onclick="setLanguage('ar')" class="block w-full text-left px-4 py-2.5 hover:bg-[#4a7c59]/10 text-stone-700 font-medium transition-colors">العربية (Arabic)</button>
+            </div>
+        </div>
+
+        <!-- Profile Icon -->
+        <a href="{% if current_user.is_authenticated %}/settings{% else %}/login{% endif %}" class="text-[#4a7c59] transition-colors duration-300 cursor-pointer active:scale-95 transition-transform p-2 rounded-full hover:bg-[#4a7c59]/10 flex items-center justify-center">
+            <span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+        </a>
+    </div>
+</nav>
+
+<script>
+    // Simple custom dropdown logic for the Globe icon
+    function setLanguage(langCode) {
+        var selectElement = document.querySelector('.goog-te-combo');
+        if (selectElement) {
+            selectElement.value = langCode;
+            selectElement.dispatchEvent(new Event('change'));
+        }
+        document.getElementById('langDropdown').classList.add('hidden');
+    }
+
+    // Close dropdown if clicking outside
+    document.addEventListener('click', function(event) {
+        var dropdown = document.getElementById('langDropdown');
+        var button = event.target.closest('button');
+        if (dropdown && !dropdown.classList.contains('hidden')) {
+            if (!button || !button.querySelector('span[data-icon="language"]')) {
+                dropdown.classList.add('hidden');
+            }
+        }
+    });
+
+    // PWA Install Logic
+    let deferredPrompt;
+    const installBtn = document.getElementById('install-pwa-btn');
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        if(installBtn) installBtn.classList.remove('hidden');
+    });
+
+    if(installBtn) {
+        installBtn.addEventListener('click', async () => {
+            if (!deferredPrompt) {
+                alert('PWA installation is either already installed, or not supported by your current browser environment (must be HTTPS or localhost).');
+                return;
+            }
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            if (outcome === 'accepted') {
+                installBtn.classList.add('hidden');
+            }
+            deferredPrompt = null;
+        });
+    }
+</script>
+
+<!-- Mobile Header (Visible only on small screens at the top) -->
+<div class="md:hidden flex justify-between items-center px-6 pt-4 pb-4 sticky top-0 z-40 bg-[#faf6f0]/90 backdrop-blur-md border-b border-[#4a7c59]/10">
+    <a href="/" class="flex items-center gap-2 text-2xl font-['Literata'] font-black text-[#4a7c59] cursor-pointer">
+        <img src="/static/icons/icon.svg" class="w-8 h-8" alt="Phyto Lab Logo">Terra
+    </a>
+    <div class="flex items-center gap-2">
+        <div class="w-8 h-8 bg-primary-container text-on-primary-container rounded-full flex items-center justify-center font-headline font-bold text-sm">
+            {% if current_user.is_authenticated %}
+                {{ current_user.email[0]|upper }}
+            {% else %}
+                ?
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- Sidebar (Desktop Fixed) -->
+<aside id="desktop-sidebar" class="hidden md:flex flex-col w-[250px] fixed left-0 top-[73px] bottom-0 bg-[#faf6f0]/60 backdrop-blur-md border-r border-[#4a7c59]/10 p-4 z-40 font-['Nunito_Sans'] transition-transform duration-300 translate-x-0">
+    <nav class="flex flex-col gap-2 mt-4 h-full">
+        <a class="flex items-center gap-3 px-4 py-3 text-[#4a7c59] bg-primary/10 rounded-lg hover:bg-primary/20 transition-colors" href="/">
+            <span class="material-symbols-outlined">dashboard</span>
+            <span class="font-semibold">Scanner Hub</span>
+        </a>
+        <a class="flex items-center gap-3 px-4 py-3 text-stone-600 hover:bg-primary/5 rounded-lg transition-colors" href="/history">
+            <span class="material-symbols-outlined">analytics</span>
+            <span class="font-semibold">Analytics</span>
+        </a>
+        <a class="flex items-center gap-3 px-4 py-3 text-stone-600 hover:bg-primary/5 rounded-lg transition-colors" href="/encyclopedia">
+            <span class="material-symbols-outlined">menu_book</span>
+            <span class="font-semibold">Encyclopedia</span>
+        </a>
+        <a class="flex items-center gap-3 px-4 py-3 text-stone-600 hover:bg-primary/5 rounded-lg transition-colors" href="/settings">
+            <span class="material-symbols-outlined">settings</span>
+            <span class="font-semibold">Settings</span>
+        </a>
+        <div class="mt-auto flex flex-col gap-2">
+            <a class="flex items-center gap-3 px-4 py-3 text-stone-600 hover:bg-primary/5 rounded-lg transition-colors" href="#">
+                <span class="material-symbols-outlined">help</span>
+                <span class="font-semibold">Support</span>
+            </a>
+            <hr class="border-outline-variant/20">
+            {% if current_user.is_authenticated %}
+            <a class="flex items-center gap-3 px-4 py-3 text-error hover:bg-error-container/50 rounded-lg transition-colors" href="/logout">
+                <span class="material-symbols-outlined">logout</span>
+                <span class="font-semibold">Logout</span>
+            </a>
+            {% else %}
+            <a class="flex items-center gap-3 px-4 py-3 text-[#4a7c59] hover:bg-primary/10 rounded-lg transition-colors" href="/login">
+                <span class="material-symbols-outlined">login</span>
+                <span class="font-semibold">Login</span>
+            </a>
+            {% endif %}
+        </div>
+    </nav>
+</aside>
+
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-6 left-0 right-0 z-50 flex justify-around items-center px-4 py-2 mx-auto bg-[#faf6f0]/70 backdrop-blur-lg w-[90%] rounded-full border border-[#4a7c59]/20 shadow-[0_10px_30px_rgba(46,50,48,0.12)]">
+    <!-- Active Tab: Home -->
+    <a href="/" class="flex flex-col items-center justify-center bg-[#4a7c59] text-[#faf6f0] rounded-full w-12 h-12 transition-all hover:bg-[#4a7c59]/10 cursor-pointer active:scale-110 duration-200 ease-out group">
+        <span class="material-symbols-outlined mb-1" data-icon="home" style="font-variation-settings: 'FILL' 1;">home</span>
+        <span class="font-['Nunito_Sans'] text-[11px] font-semibold hidden group-hover:block transition-all">Home</span>
+    </a>
+    <!-- Inactive Tab: History -->
+    <a href="/history" class="flex flex-col items-center justify-center text-stone-500 w-12 h-12 hover:bg-[#4a7c59]/10 rounded-full cursor-pointer active:scale-110 duration-200 ease-out group">
+        <span class="material-symbols-outlined mb-1" data-icon="history">history</span>
+        <span class="font-['Nunito_Sans'] text-[11px] font-semibold hidden group-hover:block transition-all">History</span>
+    </a>
+    <!-- Inactive Tab: Library -->
+    <a href="/encyclopedia" class="flex flex-col items-center justify-center text-stone-500 w-12 h-12 hover:bg-[#4a7c59]/10 rounded-full cursor-pointer active:scale-110 duration-200 ease-out group">
+        <span class="material-symbols-outlined mb-1" data-icon="menu_book">menu_book</span>
+        <span class="font-['Nunito_Sans'] text-[11px] font-semibold hidden group-hover:block transition-all">Library</span>
+    </a>
+</nav>
+
+<script>
+    function toggleDesktopSidebar(e) {
+        if(e) e.preventDefault();
+        const sidebar = document.getElementById('desktop-sidebar');
+        const mainContent = document.getElementById('main-content');
+        const mainFooter = document.getElementById('main-footer');
+        
+        if (sidebar && sidebar.classList.contains('-translate-x-full')) {
+            // Open sidebar
+            sidebar.classList.remove('-translate-x-full');
+            sidebar.classList.add('translate-x-0');
+            if (mainContent) {
+                mainContent.classList.remove('md:ml-0');
+                mainContent.classList.add('md:ml-[250px]');
+            }
+            if (mainFooter) {
+                mainFooter.classList.remove('md:pl-0');
+                mainFooter.classList.add('md:pl-[250px]');
+            }
+        } else if (sidebar) {
+            // Close sidebar
+            sidebar.classList.remove('translate-x-0');
+            sidebar.classList.add('-translate-x-full');
+            if (mainContent) {
+                mainContent.classList.remove('md:ml-[250px]');
+                mainContent.classList.add('md:ml-0');
+            }
+            if (mainFooter) {
+                mainFooter.classList.remove('md:pl-[250px]');
+                mainFooter.classList.add('md:pl-0');
+            }
+        }
+    }
+</script>

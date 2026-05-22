@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+
+{% block title %}Help & FAQ | Phyto Lab{% endblock %}
+
+{% block content %}
+
+    <main class="px-8 py-16 max-w-7xl mx-auto">
+        <header class="text-center mb-16">
+            <h1 class="text-5xl font-extrabold text-on-surface mb-4">Help & FAQ</h1>
+            <p class="text-xl text-on-surface-variant max-w-3xl mx-auto">Everything you need to know about using Phyto Lab for accurate plant disease diagnosis.</p>
+        </header>
+
+        <section class="mb-20">
+            <h2 class="text-3xl font-bold mb-8 text-on-surface">Getting Started</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-surface-container-low rounded-xl p-8">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-primary-container rounded-full flex items-center justify-center">
+                            <span class="material-symbols-outlined text-primary">camera_alt</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-on-surface">Step 1: Capture Image</h3>
+                    </div>
+                    <p class="text-on-surface-variant mb-4">Take a clear, well-lit photo of the affected plant leaf or area. Ensure the image shows the symptoms clearly.</p>
+                    <ul class="text-sm text-on-surface-variant space-y-1">
+                        <li>• Use natural daylight</li>
+                        <li>• Focus on the diseased area</li>
+                        <li>• Avoid blurry or dark images</li>
+                    </ul>
+                </div>
+                <div class="bg-surface-container-low rounded-xl p-8">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-primary-container rounded-full flex items-center justify-center">
+                            <span class="material-symbols-outlined text-primary">edit</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-on-surface">Step 2: Edit Image (Optional)</h3>
+                    </div>
+                    <p class="text-on-surface-variant mb-4">Use our built-in image editor to adjust brightness, contrast, rotation, and cropping for optimal analysis.</p>
+                    <ul class="text-sm text-on-surface-variant space-y-1">
+                        <li>• Real-time preview of changes</li>
+                        <li>• Skip editing if image is already good</li>
+                        <li>• Enhances AI diagnosis accuracy</li>
+                    </ul>
+                </div>
+                <div class="bg-surface-container-low rounded-xl p-8">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 bg-primary-container rounded-full flex items-center justify-center">
+                            <span class="material-symbols-outlined text-primary">upload_file</span>
+                        </div>
+                        <h3 class="text-xl font-semibold text-on-surface">Step 3: Upload & Analyze</h3>
+                    </div>
+                    <p class="text-on-surface-variant mb-4">Apply your edits and upload the image. Our AI will analyze it instantly with improved accuracy.</p>
+                    <ul class="text-sm text-on-surface-variant space-y-1">
+                        <li>• Supported formats: PNG, JPG, JPEG, GIF</li>
+                        <li>• Maximum size: 16 MB</li>
+                        <li>• Results in under 3 seconds</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-20">
+            <h2 class="text-3xl font-bold mb-8 text-on-surface">Frequently Asked Questions</h2>
+            <div class="space-y-6">
+                <div class="bg-surface-container-low rounded-xl p-8">
+                    <h3 class="text-xl font-semibold mb-4 text-on-surface">What diseases can Phyto Lab detect?</h3>
+                    <p class="text-on-surface-variant">Phyto Lab can identify over 38 different plant diseases across multiple crops including apples, corn, tomatoes, potatoes, and grapes. Our AI is trained on extensive datasets to recognize both common and rare conditions.</p>
+                </div>
+                <div class="bg-surface-container-low rounded-xl p-8">
+                    <h3 class="text-xl font-semibold mb-4 text-on-surface">How accurate is the diagnosis?</h3>
+                    <p class="text-on-surface-variant">Our models achieve 99% accuracy on validated test datasets. However, accuracy can vary based on image quality and disease stage. We recommend confirming critical diagnoses with laboratory testing.</p>
+                </div>
+                <div class="bg-surface-container-low rounded-xl p-8">
+                    <h3 class="text-xl font-semibold mb-4 text-on-surface">Is my data secure?</h3>
+                    <p class="text-on-surface-variant">Yes, uploaded images are processed securely and temporarily stored. We do not share or sell your data. Images are automatically deleted after processing unless you choose to save results.</p>
+                </div>
+                <div class="bg-surface-container-low rounded-xl p-8">
+                    <h3 class="text-xl font-semibold mb-4 text-on-surface">What if I get an incorrect diagnosis?</h3>
+                    <p class="text-on-surface-variant">AI diagnosis is a powerful tool but not infallible. If results don't match your observations, consider re-uploading with better lighting or different angles. For critical decisions, consult agricultural experts.</p>
+                </div>
+                <div class="bg-surface-container-low rounded-xl p-8">
+                    <h3 class="text-xl font-semibold mb-4 text-on-surface">Can I use Phyto Lab on mobile devices?</h3>
+                    <p class="text-on-surface-variant">Absolutely! Phyto Lab is fully responsive and works on smartphones, tablets, and desktops. Mobile users can take photos directly in the field for instant analysis.</p>
+                </div>
+                <div class="bg-surface-container-low rounded-xl p-8">
+                    <h3 class="text-xl font-semibold mb-4 text-on-surface">What is the image preprocessing feature?</h3>
+                    <p class="text-on-surface-variant">Our new image editor allows you to enhance your plant photos before analysis. You can adjust brightness, contrast, rotate images, and crop to focus on specific areas. This helps improve diagnosis accuracy by optimizing image quality.</p>
+                </div>
+                <div class="bg-surface-container-low rounded-xl p-8">
+                    <h3 class="text-xl font-semibold mb-4 text-on-surface">How do I use the image editor?</h3>
+                    <p class="text-on-surface-variant">After selecting or capturing an image, the editor modal appears automatically. Use the sliders and buttons to make adjustments, then click "Apply Changes & Upload" or "Skip Editing" to proceed with analysis.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-20">
+            <h2 class="text-3xl font-bold mb-8 text-on-surface">Troubleshooting</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-surface-container-low rounded-xl p-8">
+                    <h3 class="text-xl font-semibold mb-4 text-on-surface">Upload Issues</h3>
+                    <ul class="text-on-surface-variant space-y-2">
+                        <li><strong>Unsupported format:</strong> Ensure your image is PNG, JPG, JPEG, or GIF</li>
+                        <li><strong>File too large:</strong> Compress or resize images under 16 MB</li>
+                        <li><strong>Network error:</strong> Check your internet connection and try again</li>
+                    </ul>
+                </div>
+                <div class="bg-surface-container-low rounded-xl p-8">
+                    <h3 class="text-xl font-semibold mb-4 text-on-surface">Image Quality Tips</h3>
+                    <ul class="text-on-surface-variant space-y-2">
+                        <li><strong>Lighting:</strong> Use bright, even natural light</li>
+                        <li><strong>Focus:</strong> Ensure the diseased area is sharp and clear</li>
+                        <li><strong>Angle:</strong> Photograph leaves from multiple angles if needed</li>
+                        <li><strong>Background:</strong> Plain backgrounds help AI focus on symptoms</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="text-center">
+            <h2 class="text-3xl font-bold mb-8 text-on-surface">Still Need Help?</h2>
+            <p class="text-lg text-on-surface-variant mb-8 max-w-2xl mx-auto">Can't find what you're looking for? Our support team is here to help with any questions about using Phyto Lab.</p>
+            <a href="/contact" class="inline-flex items-center gap-2 px-8 py-4 bg-primary text-on-primary rounded-full font-semibold hover:opacity-90 transition-opacity">
+                <span>Contact Support</span>
+                <span class="material-symbols-outlined">contact_support</span>
+            </a>
+        </section>
+    </main>
+{% endblock %}

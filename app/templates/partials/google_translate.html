@@ -1,0 +1,33 @@
+<style>
+/* Hide the Google Translate branding and default widget */
+.goog-te-banner-frame.skiptranslate { display: none !important;} 
+body { top: 0px !important; }
+#google_translate_element { display: none !important; }
+</style>
+<div id="google_translate_element"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en', autoDisplay: false}, 'google_translate_element');
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    var langCode = "{{ current_language }}";
+    if (langCode && langCode !== 'en') {
+        var retries = 0;
+        var interval = setInterval(function() {
+            var selectElement = document.querySelector('.goog-te-combo');
+            // Check if the Google Translate widget has fully loaded the language options
+            if (selectElement && selectElement.options.length > 0) {
+                selectElement.value = langCode;
+                selectElement.dispatchEvent(new Event('change'));
+                clearInterval(interval);
+            }
+            retries++;
+            if (retries > 50) { // Timeout after 5 seconds roughly
+                clearInterval(interval);
+            }
+        }, 100);
+    }
+});
+</script>
+<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>

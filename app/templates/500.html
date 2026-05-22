@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}500 - Server Error | Phyto Lab{% endblock %}
+
+{% block content %}
+<main class="flex items-center justify-center min-h-screen font-['Manrope'] text-center pt-24 bg-surface-container-lowest">
+    <div class="max-w-md w-full">
+        <span class="material-symbols-outlined text-error text-9xl mb-4" style="font-size: 120px;">error</span>
+        <h1 class="text-6xl font-extrabold text-error mb-2">500</h1>
+        <h2 class="text-2xl font-bold text-on-surface-variant mb-4">Internal Server Error</h2>
+        <p class="text-outline mb-8">Oops! Something went wrong on our end. We are working to fix it.</p>
+        <a href="/" class="bg-error hover:bg-error-container text-on-error hover:text-on-error-container font-bold py-3 px-8 rounded-full transition-colors inline-block tracking-wide">
+            Return Home
+        </a>
+    </div>
+</main>
+{% endblock %}

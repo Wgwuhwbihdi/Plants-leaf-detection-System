@@ -1,0 +1,80 @@
+{
+  "app_name": "Phyto Lab",
+  "app_title": "Plant Disease Recognition",
+  "nav": {
+    "home": "Home",
+    "gallery": "Gallery",
+    "history": "History",
+    "about": "About",
+    "help": "Help",
+    "contact": "Contact",
+    "settings": "Settings"
+  },
+  "home": {
+    "title": "Plant Disease Detection",
+    "subtitle": "Detect diseases instantly with AI",
+    "select_file": "Select File",
+    "use_camera": "Use Camera",
+    "batch_upload": "Batch Upload",
+    "single_upload": "Single Upload"
+  },
+  "results": {
+    "diagnosis_complete": "Diagnosis Complete",
+    "specimen_verified": "Specimen Verified",
+    "primary_cause": "Primary Cause",
+    "recommended_care": "Recommended Care",
+    "save_result": "Save Result",
+    "pdf_report": "PDF Report",
+    "add_note": "Add a Note",
+    "annotate": "Annotate this result",
+    "scan_another": "Scan another?",
+    "high_confidence": "High Confidence",
+    "medium_confidence": "Medium Confidence",
+    "low_confidence": "Low Confidence",
+    "uncertain": "Uncertain"
+  },
+  "history": {
+    "filter_by_date": "Filter by Date",
+    "filter_by_disease": "Filter by Disease",
+    "filter_by_confidence": "Filter by Confidence",
+    "all_diseases": "All Diseases",
+    "from_date": "From Date",
+    "to_date": "To Date",
+    "recent_analyses": "Recent Analyses",
+    "no_results": "No analyses found",
+    "export": "Export Results"
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "theme": "Theme",
+    "dark_mode": "Dark Mode",
+    "light_mode": "Light Mode",
+    "confidence_thresholds": "Confidence Thresholds",
+    "high_threshold": "High Threshold",
+    "medium_threshold": "Medium Threshold",
+    "low_threshold": "Low Threshold"
+  },
+  "camera": {
+    "use_camera": "Use Camera",
+    "take_picture": "Take Picture",
+    "retake": "Retake",
+    "cancel": "Cancel",
+    "permission_denied": "Camera permission denied",
+    "no_camera": "No camera found"
+  },
+  "errors": {
+    "no_file": "No file selected",
+    "invalid_format": "Invalid file format",
+    "upload_error": "Upload failed",
+    "network_error": "Network error. Please check your connection."
+  },
+  "common": {
+    "loading": "Loading...",
+    "save": "Save",
+    "cancel": "Cancel",
+    "close": "Close",
+    "submit": "Submit",
+    "delete": "Delete"
+  }
+}

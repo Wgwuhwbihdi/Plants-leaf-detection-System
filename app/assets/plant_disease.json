@@ -1,0 +1,236 @@
+[
+    {
+        "name": "Apple___Apple_scab",
+        "cause": "Fungus Venturia inaequalis. Favorable conditions are cool, wet weather.",
+        "cure": "Use fungicides and resistant apple varieties. Prune and destroy infected leaves.",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Gala_apples_on_cloth.jpg/500px-Gala_apples_on_cloth.jpg"
+    },
+    {
+        "name": "Apple___Black_rot",
+        "cause": "Caused by the fungus Botryosphaeria obtusa.",
+        "cure": "Prune and remove infected areas. Apply fungicides during the growing season.",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Black_knot_on_black_cherry1.jpg/500px-Black_knot_on_black_cherry1.jpg"
+    },
+    {
+        "name": "Apple___Cedar_apple_rust",
+        "cause": "Fungus Gymnosporangium juniperi-virginianae. Requires junipers as an alternate host.",
+        "cure": "Remove nearby juniper hosts. Use resistant varieties and fungicides.",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Cedar-apple_rust_2.jpg/500px-Cedar-apple_rust_2.jpg"
+    },
+    {
+        "name": "Apple___healthy",
+        "cause": "No disease present.",
+        "cure": "Maintain good cultural practices for optimal health.",
+        "image_url": "https://images.unsplash.com/photo-1530836369250-ef71a81f33f6?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "name": "Background_without_leaves",
+        "cause": "No disease or plant detected.",
+        "cure": "Not applicable.",
+        "image_url": "https://images.unsplash.com/photo-1530836369250-ef71a81f33f6?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "name": "Blueberry___healthy",
+        "cause": "No disease present.",
+        "cure": "Maintain good cultural practices for optimal health.",
+        "image_url": "https://images.unsplash.com/photo-1530836369250-ef71a81f33f6?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "name": "Cherry___Powdery_mildew",
+        "cause": "Fungus Podosphaera clandestina.",
+        "cure": "Apply sulfur-based or fungicide treatments. Ensure good air circulation.",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Ch%C3%A2lons_-_petit_jard_%288%29.JPG/500px-Ch%C3%A2lons_-_petit_jard_%288%29.JPG"
+    },
+    {
+        "name": "Cherry___healthy",
+        "cause": "No disease present.",
+        "cure": "Maintain good cultural practices for optimal health.",
+        "image_url": "https://images.unsplash.com/photo-1530836369250-ef71a81f33f6?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "name": "Corn___Cercospora_leaf_spot Gray_leaf_spot",
+        "cause": "Fungus Cercospora zeae-maydis.",
+        "cure": "Use resistant hybrids and fungicide sprays.",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Gray_leaf_spot_Cercospora_zeae-maydis_5465607.png/500px-Gray_leaf_spot_Cercospora_zeae-maydis_5465607.png"
+    },
+    {
+        "name": "Corn___Common_rust",
+        "cause": "Fungus Puccinia sorghi.",
+        "cure": "Apply fungicides and plant resistant varieties.",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Bruine_roest_op_tarwe_%28Puccinia_recondita_f.sp._tritici_on_Triticum_aestivum%29.jpg/500px-Bruine_roest_op_tarwe_%28Puccinia_recondita_f.sp._tritici_on_Triticum_aestivum%29.jpg"
+    },
+    {
+        "name": "Corn___Northern_Leaf_Blight",
+        "cause": "Fungus Exserohilum turcicum.",
+        "cure": "Use resistant varieties and fungicides.",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Cochliobolus_heterostrophus.jpg/500px-Cochliobolus_heterostrophus.jpg"
+    },
+    {
+        "name": "Corn___healthy",
+        "cause": "No disease present.",
+        "cure": "Maintain good cultural practices for optimal health.",
+        "image_url": "https://images.unsplash.com/photo-1530836369250-ef71a81f33f6?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "name": "Grape___Black_rot",
+        "cause": "Fungus Guignardia bidwellii.",
+        "cure": "Prune infected areas and apply fungicides.",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/Guignardia_bidwellii_04.jpg/500px-Guignardia_bidwellii_04.jpg"
+    },
+    {
+        "name": "Grape___Esca_(Black_Measles)",
+        "cause": "Fungal complex including Phaeomoniella chlamydospora.",
+        "cure": "Remove infected wood. Avoid injuries to vines.",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Phylloxera_cartoon.png/500px-Phylloxera_cartoon.png"
+    },
+    {
+        "name": "Grape___Leaf_blight_(Isariopsis_Leaf_Spot)",
+        "cause": "Fungus Pseudocercospora vitis.",
+        "cure": "Apply fungicides and manage vineyard hygiene.",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Campbell_Early.jpg/500px-Campbell_Early.jpg"
+    },
+    {
+        "name": "Grape___healthy",
+        "cause": "No disease present.",
+        "cure": "Maintain good cultural practices for optimal health.",
+        "image_url": "https://images.unsplash.com/photo-1530836369250-ef71a81f33f6?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "name": "Orange___Haunglongbing_(Citrus_greening)",
+        "cause": "Bacterium Candidatus Liberibacter spp. Spread by psyllid insects.",
+        "cure": "Control psyllid population and remove infected trees.",
+        "image_url": "https://loremflickr.com/800/600/leaf,disease?random=1"
+    },
+    {
+        "name": "Peach___Bacterial_spot",
+        "cause": "Bacterium Xanthomonas campestris pv. pruni.",
+        "cure": "Use resistant varieties and copper-based bactericides.",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/2013-05-04_14_07_38_Large_Pin_Oak_%28Quercus_palustris%29_stricken_with_bacterial_leaf_scorch_during_leaf-out_near_the_house_at_988_Terrace_Boulevard_in_Ewing%2C_New_Jersey.JPG/500px-thumbnail.jpg"
+    },
+    {
+        "name": "Peach___healthy",
+        "cause": "No disease present.",
+        "cure": "Maintain good cultural practices for optimal health.",
+        "image_url": "https://images.unsplash.com/photo-1530836369250-ef71a81f33f6?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "name": "Pepper,_bell___Bacterial_spot",
+        "cause": "Bacterium Xanthomonas campestris pv. vesicatoria.",
+        "cure": "Use copper-based bactericides and resistant varieties.",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Ralstonia_solanacearum_symptoms.jpg/500px-Ralstonia_solanacearum_symptoms.jpg"
+    },
+    {
+        "name": "Pepper,_bell___healthy",
+        "cause": "No disease present.",
+        "cure": "Maintain good cultural practices for optimal health.",
+        "image_url": "https://images.unsplash.com/photo-1530836369250-ef71a81f33f6?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "name": "Potato___Early_blight",
+        "cause": "Fungus Alternaria solani.",
+        "cure": "Apply fungicides and practice crop rotation.",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Late_blight_on_potato_leaf_2.jpg/500px-Late_blight_on_potato_leaf_2.jpg"
+    },
+    {
+        "name": "Potato___Late_blight",
+        "cause": "Pathogen Phytophthora infestans.",
+        "cure": "Use resistant varieties and fungicides.",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Late_blight_on_potato_leaf_2.jpg/500px-Late_blight_on_potato_leaf_2.jpg"
+    },
+    {
+        "name": "Potato___healthy",
+        "cause": "No disease present.",
+        "cure": "Maintain good cultural practices for optimal health.",
+        "image_url": "https://images.unsplash.com/photo-1530836369250-ef71a81f33f6?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "name": "Raspberry___healthy",
+        "cause": "No disease present.",
+        "cure": "Maintain good cultural practices for optimal health.",
+        "image_url": "https://images.unsplash.com/photo-1530836369250-ef71a81f33f6?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "name": "Soybean___healthy",
+        "cause": "No disease present.",
+        "cure": "Maintain good cultural practices for optimal health.",
+        "image_url": "https://images.unsplash.com/photo-1530836369250-ef71a81f33f6?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "name": "Squash___Powdery_mildew",
+        "cause": "Fungal pathogens including Erysiphe cichoracearum.",
+        "cure": "Apply sulfur-based fungicides and maintain good air circulation.",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Golovinomyces_sordidus_on_Broadleaf_Plantain_-_Plantago_major_%2844171864324%29.jpg/500px-Golovinomyces_sordidus_on_Broadleaf_Plantain_-_Plantago_major_%2844171864324%29.jpg"
+    },
+    {
+        "name": "Strawberry___Leaf_scorch",
+        "cause": "Fungus Diplocarpon earlianum.",
+        "cure": "Remove infected leaves and apply fungicides.",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Rode-vlekkenziekte_%28Diplocarpon_earlianum%29.jpg/500px-Rode-vlekkenziekte_%28Diplocarpon_earlianum%29.jpg"
+    },
+    {
+        "name": "Strawberry___healthy",
+        "cause": "No disease present.",
+        "cure": "Maintain good cultural practices for optimal health.",
+        "image_url": "https://images.unsplash.com/photo-1530836369250-ef71a81f33f6?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "name": "Tomato___Bacterial_spot",
+        "cause": "Bacterium Xanthomonas spp.",
+        "cure": "Apply copper-based bactericides and practice crop rotation.",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Bacterial_leaf_spot_on_pepper.jpg/500px-Bacterial_leaf_spot_on_pepper.jpg"
+    },
+    {
+        "name": "Tomato___Early_blight",
+        "cause": "Fungus Alternaria solani.",
+        "cure": "Apply fungicides and remove infected leaves.",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Alternaria_solani_-_leaf_lesions.jpg/500px-Alternaria_solani_-_leaf_lesions.jpg"
+    },
+    {
+        "name": "Tomato___Late_blight",
+        "cause": "Pathogen Phytophthora infestans.",
+        "cure": "Use resistant varieties and fungicides.",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Late_blight_on_potato_leaf_2.jpg/500px-Late_blight_on_potato_leaf_2.jpg"
+    },
+    {
+        "name": "Tomato___Leaf_Mold",
+        "cause": "Fungus Passalora fulva.",
+        "cure": "Apply fungicides and ensure good ventilation.",
+        "image_url": "https://loremflickr.com/800/600/leaf,disease?random=1"
+    },
+    {
+        "name": "Tomato___Septoria_leaf_spot",
+        "cause": "Fungus Septoria lycopersici.",
+        "cure": "Remove infected leaves and apply fungicides.",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/%27Cercospora_capsici.jpg/500px-%27Cercospora_capsici.jpg"
+    },
+    {
+        "name": "Tomato___Spider_mites Two-spotted_spider_mite",
+        "cause": "Spider mites Tetranychus urticae.",
+        "cure": "Use miticides or insecticidal soaps.",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Tetranychus_urticae_with_silk_threads.jpg/500px-Tetranychus_urticae_with_silk_threads.jpg"
+    },
+    {
+        "name": "Tomato___Target_Spot",
+        "cause": "Fungus Corynespora cassiicola.",
+        "cure": "Apply fungicides and ensure good air circulation.",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Corynespora_cassiicola_Ring-Spot_Symptoms_in_Tomato_Leaves.png/500px-Corynespora_cassiicola_Ring-Spot_Symptoms_in_Tomato_Leaves.png"
+    },
+    {
+        "name": "Tomato___Tomato_Yellow_Leaf_Curl_Virus",
+        "cause": "Virus spread by whiteflies.",
+        "cure": "Control whitefly population and use resistant varieties.",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Tomatillo.jpg/500px-Tomatillo.jpg"
+    },
+    {
+        "name": "Tomato___Tomato_mosaic_virus",
+        "cause": "Virus transmitted through contact and contaminated tools.",
+        "cure": "Remove infected plants and sterilize tools.",
+        "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Campari_Tomatoes_on_the_Vine.JPG/500px-Campari_Tomatoes_on_the_Vine.JPG"
+    },
+    {
+        "name": "Tomato___healthy",
+        "cause": "No disease present.",
+        "cure": "Maintain good cultural practices for optimal health.",
+        "image_url": "https://images.unsplash.com/photo-1530836369250-ef71a81f33f6?auto=format&fit=crop&w=800&q=80"
+    }
+]

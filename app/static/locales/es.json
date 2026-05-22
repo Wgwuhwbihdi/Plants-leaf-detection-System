@@ -1,0 +1,80 @@
+{
+  "app_name": "Phyto Lab",
+  "app_title": "Reconocimiento de Enfermedades de Plantas",
+  "nav": {
+    "home": "Inicio",
+    "gallery": "Galería",
+    "history": "Historial",
+    "about": "Acerca de",
+    "help": "Ayuda",
+    "contact": "Contacto",
+    "settings": "Configuración"
+  },
+  "home": {
+    "title": "Detección de Enfermedades de Plantas",
+    "subtitle": "Detecta enfermedades al instante con IA",
+    "select_file": "Seleccionar Archivo",
+    "use_camera": "Usar Cámara",
+    "batch_upload": "Carga por Lotes",
+    "single_upload": "Carga Individual"
+  },
+  "results": {
+    "diagnosis_complete": "Diagnóstico Completo",
+    "specimen_verified": "Espécimen Verificado",
+    "primary_cause": "Causa Principal",
+    "recommended_care": "Cuidado Recomendado",
+    "save_result": "Guardar Resultado",
+    "pdf_report": "Informe PDF",
+    "add_note": "Agregar Nota",
+    "annotate": "Anotar este resultado",
+    "scan_another": "¿Escanear otro?",
+    "high_confidence": "Alta Confianza",
+    "medium_confidence": "Confianza Media",
+    "low_confidence": "Baja Confianza",
+    "uncertain": "Incierto"
+  },
+  "history": {
+    "filter_by_date": "Filtrar por Fecha",
+    "filter_by_disease": "Filtrar por Enfermedad",
+    "filter_by_confidence": "Filtrar por Confianza",
+    "all_diseases": "Todas las Enfermedades",
+    "from_date": "Desde la Fecha",
+    "to_date": "Hasta la Fecha",
+    "recent_analyses": "Análisis Recientes",
+    "no_results": "No se encontraron análisis",
+    "export": "Exportar Resultados"
+  },
+  "settings": {
+    "title": "Configuración",
+    "language": "Idioma",
+    "theme": "Tema",
+    "dark_mode": "Modo Oscuro",
+    "light_mode": "Modo Claro",
+    "confidence_thresholds": "Umbrales de Confianza",
+    "high_threshold": "Umbral Alto",
+    "medium_threshold": "Umbral Medio",
+    "low_threshold": "Umbral Bajo"
+  },
+  "camera": {
+    "use_camera": "Usar Cámara",
+    "take_picture": "Tomar Foto",
+    "retake": "Retomar",
+    "cancel": "Cancelar",
+    "permission_denied": "Permiso de cámara denegado",
+    "no_camera": "Cámara no encontrada"
+  },
+  "errors": {
+    "no_file": "Archivo no seleccionado",
+    "invalid_format": "Formato de archivo inválido",
+    "upload_error": "Error de carga",
+    "network_error": "Error de red. Por favor verifica tu conexión."
+  },
+  "common": {
+    "loading": "Cargando...",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "close": "Cerrar",
+    "submit": "Enviar",
+    "delete": "Eliminar"
+  }
+}

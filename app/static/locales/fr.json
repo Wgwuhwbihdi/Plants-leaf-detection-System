@@ -1,0 +1,80 @@
+{
+  "app_name": "Phyto Lab",
+  "app_title": "Reconnaissance des Maladies des Plantes",
+  "nav": {
+    "home": "Accueil",
+    "gallery": "Galerie",
+    "history": "Historique",
+    "about": "À propos",
+    "help": "Aide",
+    "contact": "Contact",
+    "settings": "Paramètres"
+  },
+  "home": {
+    "title": "Détection des Maladies des Plantes",
+    "subtitle": "Détectez les maladies instantanément avec l'IA",
+    "select_file": "Sélectionner un Fichier",
+    "use_camera": "Utiliser la Caméra",
+    "batch_upload": "Téléchargement par Lot",
+    "single_upload": "Téléchargement Unique"
+  },
+  "results": {
+    "diagnosis_complete": "Diagnostic Complet",
+    "specimen_verified": "Spécimen Vérifié",
+    "primary_cause": "Cause Principale",
+    "recommended_care": "Soins Recommandés",
+    "save_result": "Enregistrer le Résultat",
+    "pdf_report": "Rapport PDF",
+    "add_note": "Ajouter une Note",
+    "annotate": "Annoter ce résultat",
+    "scan_another": "Analyser un autre?",
+    "high_confidence": "Confiance Élevée",
+    "medium_confidence": "Confiance Moyenne",
+    "low_confidence": "Faible Confiance",
+    "uncertain": "Incertain"
+  },
+  "history": {
+    "filter_by_date": "Filtrer par Date",
+    "filter_by_disease": "Filtrer par Maladie",
+    "filter_by_confidence": "Filtrer par Confiance",
+    "all_diseases": "Toutes les Maladies",
+    "from_date": "À partir de la Date",
+    "to_date": "Jusqu'à la Date",
+    "recent_analyses": "Analyses Récentes",
+    "no_results": "Aucune analyse trouvée",
+    "export": "Exporter les Résultats"
+  },
+  "settings": {
+    "title": "Paramètres",
+    "language": "Langue",
+    "theme": "Thème",
+    "dark_mode": "Mode Sombre",
+    "light_mode": "Mode Clair",
+    "confidence_thresholds": "Seuils de Confiance",
+    "high_threshold": "Seuil Élevé",
+    "medium_threshold": "Seuil Moyen",
+    "low_threshold": "Seuil Bas"
+  },
+  "camera": {
+    "use_camera": "Utiliser la Caméra",
+    "take_picture": "Prendre une Photo",
+    "retake": "Reprendre",
+    "cancel": "Annuler",
+    "permission_denied": "Permission de caméra refusée",
+    "no_camera": "Caméra non trouvée"
+  },
+  "errors": {
+    "no_file": "Aucun fichier sélectionné",
+    "invalid_format": "Format de fichier invalide",
+    "upload_error": "Erreur de téléchargement",
+    "network_error": "Erreur réseau. Veuillez vérifier votre connexion."
+  },
+  "common": {
+    "loading": "Chargement...",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "close": "Fermer",
+    "submit": "Soumettre",
+    "delete": "Supprimer"
+  }
+}

@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual environments
+.venv/
+venv/
+
+# Local environment and runtime files
+.env
+app.log
+instance/
+
+# Uploaded/generated local media
+uploadimages/temp_*
+app/static/images/media__*.png
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+app/assets/models/
+*.keras

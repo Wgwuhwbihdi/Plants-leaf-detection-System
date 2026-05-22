@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block title %}Processing Batch - Phyto Lab{% endblock %}
+
+{% block content %}
+<main class="flex items-center justify-center min-h-screen font-['Manrope'] pt-24">
+    <div class="bg-white p-12 rounded-3xl shadow-xl flex flex-col items-center max-w-md w-full text-center">
+        <!-- Spinner -->
+        <div class="relative w-24 h-24 mb-8">
+            <svg class="animate-spin w-full h-full text-green-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            <div class="absolute inset-0 flex items-center justify-center font-bold text-gray-400 text-sm" id="progress-text">0%</div>
+        </div>
+        
+        <h2 class="text-2xl font-bold text-gray-800 mb-2">Analyzing Specimens...</h2>
+        <p class="text-gray-500 mb-6" id="status-text">Your batch is queued for deep learning analysis.</p>
+        
+        <div class="w-full bg-gray-200 rounded-full h-2 mb-4 overflow-hidden">
+            <div id="progress-bar" class="bg-green-600 h-2 rounded-full transition-all duration-300" style="width: 5%"></div>
+        </div>
+    </div>
+    </div>
+</main>
+{% endblock %}
+
+{% block extra_js %}
+    <!-- Hidden Data that we post to backend when polling -->
+    <script>
+        const taskId = "{{ task_id }}";
+        const batchId = "{{ batch_id }}";
+        
+        const payload = {
+            saved_files: {{ saved_files|tojson }},
+            specimen_ids: {{ specimen_ids|tojson }},
+            valid_images: {{ valid_images|tojson }}
+        };
+
+        const statusText = document.getElementById('status-text');
+        const progressBar = document.getElementById('progress-bar');
+        const progressCount = document.getElementById('progress-text');
+
+        let percent = 5;
+
+        // Fake percent loader to give UX feeling while waiting
+        const uxInterval = setInterval(() => {
+            if (percent < 90) {
+                percent += Math.random() * 5;
+                progressBar.style.width = percent + '%';
+                progressCount.innerText = Math.round(percent) + '%';
+            }
+        }, 1000);
+
+        function checkStatus() {
+            fetch(`/api/batch-status/${taskId}/${batchId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            })
+            .then(r => r.json())
+            .then(data => {
+                if (data.state === 'SUCCESS') {
+                    clearInterval(uxInterval);
+                    percent = 100;
+                    progressBar.style.width = '100%';
+                    progressCount.innerText = '100%';
+                    statusText.innerText = 'Complete! Redirecting...';
+                    setTimeout(() => {
+                        window.location.href = `/batch/${batchId}`;
+                    }, 500);
+                }
+                else if (data.state === 'FAILURE') {
+                    clearInterval(uxInterval);
+                    statusText.innerText = 'An error occurred during analysis.';
+                    progressBar.classList.replace('bg-green-600', 'bg-red-500');
+                }
+                else {
+                    statusText.innerText = '(' + data.state + ') ' + (data.status || 'Processing...');
+                    setTimeout(checkStatus, 2000);
+                }
+            })
+            .catch(err => {
+                setTimeout(checkStatus, 3000);
+
+            });
+        }
+
+        // Start polling
+        setTimeout(checkStatus, 1500);
+    </script>
+{% endblock %}

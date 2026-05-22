@@ -1,0 +1,153 @@
+{% extends 'base.html' %}
+
+{% block title %}Phyto Lab | Analysis Results{% endblock %}
+
+{% block content %}
+{% set is_healthy = 'healthy' in prediction.name.lower() %}
+
+<!-- Stoplight Critical Glow -->
+<div class="fixed inset-0 pointer-events-none z-50 border-[8px] sm:border-[12px] {% if is_healthy %} border-[#4a7c59]/30 {% else %} border-[#b83230]/30 {% endif %} mix-blend-multiply transition-all duration-1000"></div>
+
+<!-- Main Content -->
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 relative z-10">
+<!-- Header Section -->
+<div class="mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div>
+<h1 class="text-3xl md:text-4xl font-headline font-bold text-[#2e3230] mb-2">Scan Results</h1>
+<p class="text-[#4a4e4a] text-lg">
+    {% if is_healthy %}
+        Your plant appears to be in excellent condition.
+    {% else %}
+        Critical attention required for your plant.
+    {% endif %}
+</p>
+</div>
+<button onclick="if('speechSynthesis' in window){ const msg = new SpeechSynthesisUtterance('{{ prediction.name.replace('___', ' ').replace('_', ' ') }}. {{ prediction.cause }}'); window.speechSynthesis.speak(msg); }" class="flex items-center gap-2 bg-[#f0e8db] text-[#5e5548] px-4 py-2 rounded-xl hover:bg-[#e4e0d8] transition-colors font-semibold shadow-sm w-fit active:scale-95">
+<span class="material-symbols-outlined text-xl">volume_up</span>
+                Listen to Advice
+            </button>
+</div>
+<!-- Bento Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Left Column (Diagnosis & Action Plan) -->
+<div class="lg:col-span-2 flex flex-col gap-6">
+<!-- Card 1: Diagnosis (Stoplight Red/Green Focus) -->
+<article class="{% if is_healthy %} bg-[#78a886]/20 border-[#4a7c59]/20 {% else %} bg-[#ffdad8] border-[#b83230]/20 {% endif %} rounded-[2.5rem] p-6 md:p-8 shadow-sm flex flex-col md:flex-row gap-8 items-start relative overflow-hidden group border">
+<div class="flex-1 z-10">
+<div class="flex items-center gap-3 mb-4 {% if is_healthy %} text-[#4a7c59] {% else %} text-[#b83230] {% endif %}">
+<span class="material-symbols-outlined text-3xl">{% if is_healthy %} verified {% else %} warning {% endif %}</span>
+<span class="font-bold tracking-wider uppercase text-sm">{% if is_healthy %} Healthy Diagnosis {% else %} Critical Diagnosis {% endif %}</span>
+</div>
+<h2 class="text-3xl font-headline font-bold break-words {% if is_healthy %} text-[#2e3230] {% else %} text-[#690005] {% endif %} mb-2">{{ prediction.name.replace('___', ' ').replace('_', ' ').title() }}</h2>
+<p class="{% if is_healthy %} text-[#2e3230]/80 border-[#4a7c59]/20 {% else %} text-[#690005]/80 border-[#b83230]/20 {% endif %} text-lg mb-6 font-semibold border-b pb-4">{{ prediction.pathogen_type or 'Unknown Pathogen' }}</p>
+<p class="{% if is_healthy %} text-[#2e3230] {% else %} text-[#690005] {% endif %} leading-relaxed mb-6">
+                            {{ prediction.cause }}
+                        </p>
+</div>
+<!-- Photo Comparison -->
+<div class="w-full md:w-5/12 flex flex-col gap-3 z-10">
+<div class="relative rounded-3xl overflow-hidden shadow-sm border-2 {% if is_healthy %} border-[#4a7c59]/30 {% else %} border-[#b83230]/30 {% endif %}">
+<img alt="Your affected plant" class="w-full h-32 md:h-40 object-cover" src="{{ imagepath }}"/>
+<div class="absolute bottom-2 left-2 bg-black/60 text-white text-xs px-2 py-1 rounded backdrop-blur-sm">Your Plant</div>
+</div>
+{% if prediction.db_image_url %}
+<div class="relative rounded-3xl overflow-hidden shadow-sm opacity-80 mix-blend-luminosity hover:mix-blend-normal transition-all">
+<img alt="Reference disease image" class="w-full h-24 md:h-32 object-cover" src="{{ prediction.db_image_url }}"/>
+<div class="absolute bottom-2 left-2 bg-black/60 text-white text-xs px-2 py-1 rounded backdrop-blur-sm">Reference</div>
+</div>
+{% endif %}
+</div>
+<!-- Decorative background element -->
+<div class="absolute -bottom-24 -right-24 {% if is_healthy %} text-[#4a7c59] {% else %} text-[#b83230] {% endif %} opacity-5 material-symbols-outlined text-[20rem] pointer-events-none rotate-12">
+                        {% if is_healthy %} eco {% else %} coronavirus {% endif %}
+                    </div>
+</article>
+
+<!-- Card 2: Action Plan -->
+<article class="bg-[#f0ece4] rounded-[2.5rem] p-6 md:p-8 shadow-sm flex-1">
+<div class="flex items-center gap-3 mb-6">
+<div class="{% if is_healthy %} bg-[#4a7c59] text-[#ffffff] {% else %} bg-[#b83230] text-[#ffffff] {% endif %} p-3 rounded-2xl shadow-sm">
+<span class="material-symbols-outlined">{% if is_healthy %} spa {% else %} medical_services {% endif %}</span>
+</div>
+<h3 class="text-2xl font-headline font-bold text-[#2e3230]">{% if is_healthy %}How to Maintain It{% else %}How to Fix It{% endif %}</h3>
+</div>
+<div class="space-y-6 mt-4">
+{% if prediction.name == 'Background_without_leaves' %}
+    <div class="flex gap-4 items-start group">
+        <div class="flex-shrink-0 w-8 h-8 rounded-full bg-[#e4e0d8] text-[#4a4e4a] flex items-center justify-center font-bold text-lg transition-colors"><span class="material-symbols-outlined text-sm">info</span></div>
+        <div>
+        <h4 class="font-bold text-[#2e3230] text-lg mb-1">Please Try Again</h4>
+        <p class="text-[#4a4e4a] leading-relaxed">No plant or leaf was detected in the image. Please upload a clear, focused picture of the plant you want to analyze.</p>
+        </div>
+    </div>
+{% else %}
+    <div class="flex gap-4 items-start group">
+        <div class="flex-shrink-0 w-8 h-8 rounded-full bg-[#e4e0d8] text-[#4a4e4a] flex items-center justify-center font-bold text-lg group-hover:{% if is_healthy %}bg-[#4a7c59]{% else %}bg-[#b83230]{% endif %} group-hover:text-[#ffffff] transition-colors">1</div>
+        <div>
+        <h4 class="font-bold text-[#2e3230] text-lg mb-1">Recommended Action</h4>
+        <p class="text-[#4a4e4a] leading-relaxed">{{ prediction.cure }}</p>
+        </div>
+    </div>
+{% endif %}
+</div>
+</article>
+</div>
+
+<!-- Right Column (Weather & Risk) -->
+<div class="lg:col-span-1 lg:sticky lg:top-24 h-fit">
+<!-- Card 3: Weather Factors -->
+<aside class="bg-[#c4a66a] rounded-[2.5rem] p-6 md:p-8 shadow-sm flex flex-col relative overflow-hidden">
+<div class="relative z-10 flex flex-col h-full">
+<div class="flex items-center gap-3 mb-6 text-[#554020]">
+<span class="material-symbols-outlined text-3xl">thunderstorm</span>
+<h3 class="text-xl font-headline font-bold">Weather &amp; Risk</h3>
+</div>
+{% if prediction.name == 'Background_without_leaves' %}
+<div class="bg-[#faf6f0]/50 rounded-2xl p-5 mb-6 backdrop-blur-sm border border-[#705c30]/10">
+<p class="text-xl font-headline font-bold text-[#554020] mb-2">Not Applicable</p>
+<p class="text-[#554020]/80 leading-relaxed text-sm">
+    Weather forecasts and risk factors cannot be provided because no plant was detected in the frame.
+</p>
+</div>
+{% else %}
+<div class="bg-[#faf6f0]/50 rounded-2xl p-5 mb-6 backdrop-blur-sm border border-[#705c30]/10">
+<p class="text-2xl font-headline font-bold text-[#554020] mb-2">Rain Tomorrow</p>
+<p class="text-[#554020]/90 font-bold bg-[#705c30]/10 inline-block px-3 py-1 rounded-md mb-3">
+    {% if is_healthy %}Continue monitoring{% else %}Apply treatment today{% endif %}
+</p>
+<p class="text-[#554020]/80 leading-relaxed text-sm">
+    {% if is_healthy %}
+        Rain provides hydration but can also encourage fungal spores if the leaves stay wet too long. 
+    {% else %}
+        Wet leaves provide the perfect environment for spores to germinate. If it rains before you treat the plant, the infection will likely spread to neighboring crops.
+    {% endif %}
+</p>
+</div>
+{% if not is_healthy %}
+<div class="mt-auto">
+<h4 class="font-bold text-[#554020] mb-3 text-sm uppercase tracking-wide">Risk Factors Present</h4>
+<ul class="space-y-3">
+<li class="flex items-center gap-3 text-[#554020]">
+<span class="material-symbols-outlined text-[#b83230]">close</span>
+<span>High Humidity (&gt;80%)</span>
+</li>
+<li class="flex items-center gap-3 text-[#554020]">
+<span class="material-symbols-outlined text-[#b83230]">close</span>
+<span>Cool night temperatures</span>
+</li>
+<li class="flex items-center gap-3 text-[#554020]">
+<span class="material-symbols-outlined text-[#b83230]">close</span>
+<span>Dense planting</span>
+</li>
+</ul>
+</div>
+{% endif %}
+{% endif %}
+</div>
+<!-- Decorative background texture -->
+<div class="absolute top-0 right-0 w-64 h-64 bg-[#705c30]/10 rounded-full blur-3xl pointer-events-none -translate-y-1/2 translate-x-1/3"></div>
+</aside>
+</div>
+</div>
+</main>
+{% endblock %}

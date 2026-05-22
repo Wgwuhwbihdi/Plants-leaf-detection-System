@@ -1,0 +1,66 @@
+{
+  "app_name": "Phyto Lab",
+  "app_title": "पौधों की बीमारी पहचान",
+  "nav": {
+    "home": "होम",
+    "gallery": "गैलरी",
+    "history": "इतिहास",
+    "about": "अबाउट",
+    "help": "सहायता",
+    "contact": "संपर्क",
+    "settings": "सेटिंग्स"
+  },
+  "home": {
+    "title": "पौधों की बीमारी पहचान",
+    "subtitle": "एआई से तुरंत पहचान",
+    "select_file": "फाइल चुनें",
+    "use_camera": "कैमरा इस्तेमाल करें",
+    "batch_upload": "बैच अपलोड",
+    "single_upload": "एकल अपलोड"
+  },
+  "results": {
+    "diagnosis_complete": "निदान पूरा",
+    "specimen_verified": "नमूना सत्यापित",
+    "primary_cause": "मुख्य कारण",
+    "recommended_care": "सुझाया गया उपचार",
+    "save_result": "परिणाम सेव करें",
+    "pdf_report": "पीडीएफ रिपोर्ट",
+    "add_note": "नोट जोड़ें",
+    "annotate": "इस परिणाम पर नोट लिखें",
+    "scan_another": "एक और स्कैन करें?",
+    "high_confidence": "उच्च विश्वास",
+    "medium_confidence": "मध्यम विश्वास",
+    "low_confidence": "कम विश्वास",
+    "uncertain": "अनिश्चित"
+  },
+  "history": {
+    "filter_by_date": "तारीख से फ़िल्टर",
+    "filter_by_disease": "रोग से फ़िल्टर",
+    "filter_by_confidence": "विश्वास से फ़िल्टर",
+    "all_diseases": "सभी रोग",
+    "from_date": "आरंभ तिथि",
+    "to_date": "अंत तिथि",
+    "recent_analyses": "हाल के विश्लेषण",
+    "no_results": "कोई विश्लेषण नहीं मिला",
+    "export": "परिणाम निर्यात करें"
+  },
+  "settings": {
+    "title": "सेटिंग्स",
+    "language": "भाषा",
+    "theme": "थीम",
+    "dark_mode": "डार्क मोड",
+    "light_mode": "लाइट मोड",
+    "confidence_thresholds": "विश्वास सीमा",
+    "high_threshold": "उच्च सीमा",
+    "medium_threshold": "मध्यम सीमा",
+    "low_threshold": "निम्न सीमा"
+  },
+  "common": {
+    "loading": "लोड हो रहा है...",
+    "save": "सेव",
+    "cancel": "रद्द करें",
+    "close": "बंद करें",
+    "submit": "सबमिट",
+    "delete": "हटाएं"
+  }
+}

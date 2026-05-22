@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+uploadimages/
+*.pyc
+*.pyo
+.git/
+.vscode/
+.gemini/
+scratch/

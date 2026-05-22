@@ -1,0 +1,66 @@
+{
+  "app_name": "Phyto Lab",
+  "app_title": "वनस्पती रोग ओळख प्रणाली",
+  "nav": {
+    "home": "होम",
+    "gallery": "गॅलरी",
+    "history": "इतिहास",
+    "about": "माहिती",
+    "help": "मदत",
+    "contact": "संपर्क",
+    "settings": "सेटिंग्ज"
+  },
+  "home": {
+    "title": "वनस्पती रोग शोध",
+    "subtitle": "एआयने त्वरित ओळखा",
+    "select_file": "फाइल निवडा",
+    "use_camera": "कॅमेरा वापरा",
+    "batch_upload": "बॅच अपलोड",
+    "single_upload": "एकल अपलोड"
+  },
+  "results": {
+    "diagnosis_complete": "निदान पूर्ण",
+    "specimen_verified": "नमुना तपासलेला",
+    "primary_cause": "मुख्य कारण",
+    "recommended_care": "सुचवलेली काळजी",
+    "save_result": "निकाल सेव करा",
+    "pdf_report": "पीडीएफ अहवाल",
+    "add_note": "नोंद जोडा",
+    "annotate": "या निकालावर नोंद जोडा",
+    "scan_another": "आणखी एक स्कॅन?",
+    "high_confidence": "उच्च विश्वास",
+    "medium_confidence": "मध्यम विश्वास",
+    "low_confidence": "कमी विश्वास",
+    "uncertain": "अनिश्चित"
+  },
+  "history": {
+    "filter_by_date": "तारीखेनुसार फिल्टर",
+    "filter_by_disease": "रोगानुसार फिल्टर",
+    "filter_by_confidence": "विश्वासानुसार फिल्टर",
+    "all_diseases": "सर्व रोग",
+    "from_date": "सुरूवातीची तारीख",
+    "to_date": "शेवटची तारीख",
+    "recent_analyses": "अलिकडील विश्लेषण",
+    "no_results": "कोणतेही विश्लेषण आढळले नाही",
+    "export": "निकाल निर्यात करा"
+  },
+  "settings": {
+    "title": "सेटिंग्ज",
+    "language": "भाषा",
+    "theme": "थीम",
+    "dark_mode": "डार्क मोड",
+    "light_mode": "लाइट मोड",
+    "confidence_thresholds": "विश्वास मर्यादा",
+    "high_threshold": "उच्च मर्यादा",
+    "medium_threshold": "मध्यम मर्यादा",
+    "low_threshold": "कमी मर्यादा"
+  },
+  "common": {
+    "loading": "लोड होत आहे...",
+    "save": "सेव करा",
+    "cancel": "रद्द करा",
+    "close": "बंद करा",
+    "submit": "सबमिट",
+    "delete": "काढून टाका"
+  }
+}

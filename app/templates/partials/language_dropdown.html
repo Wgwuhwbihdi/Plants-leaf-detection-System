@@ -1,0 +1,13 @@
+<label for="language-select" class="sr-only">{{ t('Language') }}</label>
+<select
+  id="language-select"
+  data-language-select
+  class="text-sm px-3 py-2 rounded-full bg-surface-container text-on-surface border border-outline-variant hover:bg-surface-container-high focus:outline-none focus:ring-2 focus:ring-primary"
+  aria-label="{{ t('Language') }}"
+>
+  {% for code in language_order %}
+  <option value="{{ code }}" {% if current_language == code %}selected{% endif %}>
+    {{ available_languages[code].name }}
+  </option>
+  {% endfor %}
+</select>

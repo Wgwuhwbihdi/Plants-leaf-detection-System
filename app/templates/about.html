@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block title %}About | Phyto Lab{% endblock %}
+
+{% block content %}
+<main class="px-8 py-16 max-w-7xl mx-auto">
+    <header class="text-center mb-16">
+        <h1 class="text-5xl font-extrabold text-on-surface mb-4">About Phyto Lab</h1>
+        <p class="text-xl text-on-surface-variant max-w-3xl mx-auto">Revolutionizing plant health diagnostics with cutting-edge AI technology for farmers, botanists, and agriculture professionals worldwide.</p>
+    </header>
+
+    <section class="mb-20">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+                <h2 class="text-3xl font-bold mb-6 text-on-surface">Our Mission</h2>
+                <p class="text-lg text-on-surface-variant mb-6">At Phyto Lab, we believe in sustainable agriculture through intelligent technology. Our mission is to empower farmers and researchers with accurate, fast, and accessible plant disease diagnosis tools that help prevent crop losses and promote healthier ecosystems.</p>
+                <p class="text-lg text-on-surface-variant">By combining advanced machine learning with botanical expertise, we provide laboratory-grade diagnostics in seconds, making plant health management more efficient and effective than ever before.</p>
+            </div>
+            <div class="bg-surface-container-low rounded-xl p-8">
+                <img src="/static/images/logo.svg" alt="Phyto Lab Logo" class="w-32 h-32 mx-auto mb-4">
+                <h3 class="text-xl font-semibold text-center mb-4 text-on-surface">Founded in 2024</h3>
+                <p class="text-center text-on-surface-variant">Combining AI innovation with agricultural expertise</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="mb-20">
+        <h2 class="text-3xl font-bold text-center mb-12 text-on-surface">How Our AI Works</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-surface-container-low rounded-xl p-8 text-center">
+                <div class="w-16 h-16 bg-primary-container rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span class="material-symbols-outlined text-primary text-2xl">image</span>
+                </div>
+                <h3 class="text-xl font-semibold mb-4 text-on-surface">Image Analysis</h3>
+                <p class="text-on-surface-variant">Our deep learning models analyze uploaded plant images, identifying visual patterns and symptoms with high precision.</p>
+            </div>
+            <div class="bg-surface-container-low rounded-xl p-8 text-center">
+                <div class="w-16 h-16 bg-primary-container rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span class="material-symbols-outlined text-primary text-2xl">psychology</span>
+                </div>
+                <h3 class="text-xl font-semibold mb-4 text-on-surface">Pattern Recognition</h3>
+                <p class="text-on-surface-variant">Trained on thousands of disease samples, our AI recognizes subtle differences between healthy and diseased plants.</p>
+            </div>
+            <div class="bg-surface-container-low rounded-xl p-8 text-center">
+                <div class="w-16 h-16 bg-primary-container rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span class="material-symbols-outlined text-primary text-2xl">verified</span>
+                </div>
+                <h3 class="text-xl font-semibold mb-4 text-on-surface">Instant Results</h3>
+                <p class="text-on-surface-variant">Get detailed diagnosis reports with treatment recommendations in under 3 seconds.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="mb-20">
+        <h2 class="text-3xl font-bold text-center mb-12 text-on-surface">Our Team</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-surface-container-low rounded-xl p-8 text-center">
+                <div class="w-20 h-20 bg-secondary-container rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span class="material-symbols-outlined text-secondary text-3xl">person</span>
+                </div>
+                <h3 class="text-xl font-semibold mb-2 text-on-surface">Dr. Aris Botanist</h3>
+                <p class="text-on-surface-variant mb-4">Head Researcher</p>
+                <p class="text-sm text-on-surface-variant">Expert in plant pathology with 15+ years of field experience.</p>
+            </div>
+            <div class="bg-surface-container-low rounded-xl p-8 text-center">
+                <div class="w-20 h-20 bg-secondary-container rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span class="material-symbols-outlined text-secondary text-3xl">engineering</span>
+                </div>
+                <h3 class="text-xl font-semibold mb-2 text-on-surface">AI Development Team</h3>
+                <p class="text-on-surface-variant mb-4">Machine Learning Engineers</p>
+                <p class="text-sm text-on-surface-variant">Specializing in computer vision and agricultural AI applications.</p>
+            </div>
+            <div class="bg-surface-container-low rounded-xl p-8 text-center">
+                <div class="w-20 h-20 bg-secondary-container rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span class="material-symbols-outlined text-secondary text-3xl">agriculture</span>
+                </div>
+                <h3 class="text-xl font-semibold mb-2 text-on-surface">Agricultural Partners</h3>
+                <p class="text-on-surface-variant mb-4">Farmers & Researchers</p>
+                <p class="text-sm text-on-surface-variant">Collaborating to validate and improve our diagnostic accuracy.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="text-center">
+        <h2 class="text-3xl font-bold mb-8 text-on-surface">Ready to Get Started?</h2>
+        <p class="text-lg text-on-surface-variant mb-8 max-w-2xl mx-auto">Join thousands of farmers and researchers using Phyto Lab to protect their crops and maximize yields.</p>
+        <a href="/" class="inline-flex items-center gap-2 px-8 py-4 bg-primary text-on-primary rounded-full font-semibold hover:opacity-90 transition-opacity">
+            <span>Start Diagnosing</span>
+            <span class="material-symbols-outlined">arrow_forward</span>
+        </a>
+    </section>
+</main>
+{% endblock %}
+
+
+

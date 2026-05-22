@@ -1,0 +1,281 @@
+{% extends 'base.html' %}
+
+{% block title %}Diagnostic History Archive - Terra Ag-Tech{% endblock %}
+
+{% block content %}
+<main class="flex-1 p-6 md:p-10 max-w-7xl mx-auto w-full space-y-8 relative z-10 pt-24">
+    <!-- Page Header Section -->
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 glass-panel rounded-2xl p-6">
+        <div>
+            <h1 class="text-3xl font-bold font-headline text-[#2e3230] mb-2 tracking-tight">Diagnostic History</h1>
+            <p class="text-[#4a4e4a] font-body">Review, manage, and export historical plant pathogen analysis records.</p>
+        </div>
+        <div class="flex flex-wrap items-center gap-3">
+            <button class="px-5 py-2.5 rounded-xl bg-[#f0ece4] text-[#b83230] border border-[#ffdad8] hover:bg-[#ffdad8] transition-colors flex items-center gap-2 font-medium">
+                <span class="material-symbols-outlined text-[20px]" data-icon="delete">delete</span> Delete Selected
+            </button>
+            <button id="export-history" class="px-5 py-2.5 rounded-xl bg-[#4a7c59] text-[#ffffff] hover:bg-[#78a886] hover:text-[#d8f0de] transition-colors shadow-sm flex items-center gap-2 font-medium">
+                <span class="material-symbols-outlined text-[20px]" data-icon="download">download</span> Export CSV
+            </button>
+        </div>
+    </div>
+
+    <!-- Bento Grid Layout -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <!-- Filter Bar (Bento Box) -->
+        <div class="lg:col-span-12 glass-panel rounded-2xl p-5 flex flex-col md:flex-row items-center gap-4 shadow-[0_4px_20px_rgba(46,50,48,0.06)] border border-[#c4c8bc]/30">
+            <!-- Search Input -->
+            <div class="relative flex-1 w-full">
+                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[#74796e]" data-icon="search">search</span>
+                <input id="disease-filter" data-filter="disease" class="w-full pl-10 pr-4 py-3 rounded-xl bg-[#e4e0d8] border-none focus:ring-2 focus:ring-primary text-[#2e3230] placeholder-on-surface-variant" placeholder="Search by Disease Name or ID..." type="text"/>
+            </div>
+
+            <!-- Filters Group -->
+            <div class="flex flex-wrap items-center gap-4 w-full md:w-auto">
+                <!-- Confidence Dropdown -->
+                <div class="relative min-w-[160px]">
+                    <select id="confidence-filter" data-filter="confidenceLevel" class="w-full appearance-none bg-[#e4e0d8] border-none py-3 pl-4 pr-10 rounded-xl text-[#2e3230] focus:ring-2 focus:ring-primary cursor-pointer font-medium">
+                        <option value="">All Confidence</option>
+                        <option value="high">&gt; 80% (High)</option>
+                        <option value="medium">60% - 80% (Med)</option>
+                        <option value="low">&lt; 60% (Low)</option>
+                    </select>
+                    <span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-[#74796e] pointer-events-none" data-icon="expand_more">expand_more</span>
+                </div>
+                <!-- Date Range -->
+                <div class="flex items-center gap-2 bg-[#e4e0d8] rounded-xl px-2 py-1">
+                    <input id="date-from-filter" data-filter="dateFrom" class="bg-transparent border-none text-sm text-[#2e3230] focus:ring-0 p-2 cursor-pointer" type="date"/>
+                    <span class="text-[#74796e] material-symbols-outlined text-[18px]" data-icon="arrow_forward">arrow_forward</span>
+                    <input id="date-to-filter" data-filter="dateTo" class="bg-transparent border-none text-sm text-[#2e3230] focus:ring-0 p-2 cursor-pointer" type="date"/>
+                </div>
+            </div>
+
+            <!-- Toggles -->
+            <div class="flex items-center gap-2 w-full md:w-auto overflow-x-auto pb-2 md:pb-0 hide-scrollbar">
+                <button id="clear-history-filters" class="whitespace-nowrap px-4 py-2 rounded-full bg-[#eae6de] text-[#2e3230] font-medium text-sm hover:bg-[#e4e0d8] transition-colors border border-[#c4c8bc]">Clear</button>
+            </div>
+        </div>
+
+        <!-- Main Table Card -->
+        <div class="lg:col-span-12 glass-panel rounded-3xl overflow-hidden shadow-[0_4px_20px_rgba(46,50,48,0.06)] border border-[#c4c8bc]/30 bg-[#faf6f0]">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-[#f5f1ea] text-[#4a4e4a] text-sm border-b border-[#e4e0d8]">
+                            <th class="py-4 px-6 font-semibold w-12"><input class="rounded text-[#4a7c59] focus:ring-primary bg-[#f0ece4] border-[#c4c8bc]" type="checkbox"/></th>
+                            <th class="py-4 px-4 font-semibold">Specimen</th>
+                            <th class="py-4 px-6 font-semibold">ID &amp; Diagnosis</th>
+                            <th class="py-4 px-6 font-semibold">Confidence</th>
+                            <th class="py-4 px-6 font-semibold">Date Analyzed</th>
+                            <th class="py-4 px-6 font-semibold">Status</th>
+                            <th class="py-4 px-6 font-semibold text-right">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-surface-variant">
+                    {% if history %}
+                        {% for entry in history %}
+                            {% if entry.type == 'single' %}
+                                {% set result = entry %}
+                                <tr class="hover:bg-[#ffffff] transition-colors group data-card" data-disease="{{ result.prediction.name }}" data-confidence-level="{{ result.prediction.confidence_level }}" data-timestamp="{{ result.timestamp[:10] }}">
+                                    <td class="py-4 px-6"><input class="rounded text-[#4a7c59] focus:ring-primary bg-[#f0ece4] border-[#c4c8bc]" type="checkbox"/></td>
+                                    <td class="py-4 px-4">
+                                        <img alt="Specimen" class="w-12 h-12 rounded-lg object-cover border border-[#c4c8bc]/50 shadow-sm" src="{{ result.image_filename if 'http' in result.image_filename else url_for('upload.uploaded_images', filename=result.image_filename) }}"/>
+                                    </td>
+                                    <td class="py-4 px-6">
+                                        <div class="font-headline font-semibold text-[#2e3230]">{{ result.prediction.name.split('___')[-1].replace('_', ' ') }}</div>
+                                        <div class="text-xs text-[#4a4e4a] mt-0.5 font-mono">{{ result.specimen_id }}</div>
+                                    </td>
+                                    <td class="py-4 px-6">
+                                        <div class="flex items-center gap-3 w-full min-w-[120px]">
+                                            <span class="text-sm font-bold" style="color: {% if result.prediction.confidence_level == 'high' %}#4a7c59{% elif result.prediction.confidence_level == 'medium' %}#705c30{% else %}#b83230{% endif %}">{{ result.prediction.confidence }}</span>
+                                            <div class="flex-1 max-w-[6rem] h-2 bg-[#e4e0d8] rounded-full overflow-hidden">
+                                                <div class="h-full rounded-full" style="width: {{ result.prediction.confidence }}; background-color: {% if result.prediction.confidence_level == 'high' %}#4a7c59{% elif result.prediction.confidence_level == 'medium' %}#705c30{% else %}#b83230{% endif %};"></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="py-4 px-6 text-sm text-[#4a4e4a]">
+                                        {{ result.timestamp[:10] }}<br/>
+                                        <span class="text-xs text-[#74796e]">{{ result.timestamp[11:16] }}</span>
+                                    </td>
+                                    <td class="py-4 px-6">
+                                        {% if result.prediction.confidence_level == 'high' %}
+                                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#78a886]/30 text-[#2a6038] text-xs font-bold border border-[#78a886]">
+                                                <span class="material-symbols-outlined text-[14px]" data-icon="verified">verified</span> Verified
+                                            </span>
+                                        {% elif result.prediction.confidence_level == 'medium' %}
+                                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#eae6de] text-[#4a4e4a] text-xs font-bold border border-[#c4c8bc]">
+                                                <span class="material-symbols-outlined text-[14px]" data-icon="pending">pending</span> Pending Review
+                                            </span>
+                                        {% else %}
+                                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#ffdad8] text-[#690005] text-xs font-bold border border-[#b83230]/20">
+                                                <span class="material-symbols-outlined text-[14px]" data-icon="warning">warning</span> Manual Inspect
+                                            </span>
+                                        {% endif %}
+                                    </td>
+                                    <td class="py-4 px-6 text-right">
+                                        <div class="flex justify-end gap-2 transition-opacity">
+                                            <button class="p-2 rounded-lg hover:bg-[#f0ece4] text-[#4a4e4a] hover:text-[#4a7c59] transition-colors">
+                                                <span class="material-symbols-outlined text-[20px]" data-icon="visibility">visibility</span>
+                                            </button>
+                                            <a href="{{ result.image_filename if 'http' in result.image_filename else url_for('upload.uploaded_images', filename=result.image_filename) }}" download class="p-2 rounded-lg hover:bg-[#f0ece4] text-[#4a4e4a] hover:text-[#4a7c59] transition-colors inline-block">
+                                                <span class="material-symbols-outlined text-[20px]" data-icon="download">download</span>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% elif entry.type == 'batch' %}
+                                {% for result in entry.results %}
+                                    <tr class="hover:bg-[#ffffff] transition-colors group data-card" data-disease="{{ result.prediction.name }}" data-confidence-level="{{ result.prediction.confidence_level }}" data-timestamp="{{ entry.timestamp[:10] }}">
+                                        <td class="py-4 px-6"><input class="rounded text-[#4a7c59] focus:ring-primary bg-[#f0ece4] border-[#c4c8bc]" type="checkbox"/></td>
+                                        <td class="py-4 px-4">
+                                            <img alt="Specimen" class="w-12 h-12 rounded-lg object-cover border border-[#c4c8bc]/50 shadow-sm" src="{{ result.image_url if 'http' in result.image_url else url_for('upload.uploaded_images', filename=result.image_filename) }}"/>
+                                        </td>
+                                        <td class="py-4 px-6">
+                                            <div class="font-headline font-semibold text-[#2e3230]">{{ result.prediction.name.split('___')[-1].replace('_', ' ') }}</div>
+                                            <div class="text-xs text-[#4a4e4a] mt-0.5 font-mono">{{ result.specimen_id or entry.id[:6] }}</div>
+                                        </td>
+                                        <td class="py-4 px-6">
+                                            <div class="flex items-center gap-3 w-full min-w-[120px]">
+                                                <span class="text-sm font-bold" style="color: {% if result.prediction.confidence_level == 'high' %}#4a7c59{% elif result.prediction.confidence_level == 'medium' %}#705c30{% else %}#b83230{% endif %}">{{ result.prediction.confidence }}</span>
+                                                <div class="flex-1 max-w-[6rem] h-2 bg-[#e4e0d8] rounded-full overflow-hidden">
+                                                    <div class="h-full rounded-full" style="width: {{ result.prediction.confidence }}; background-color: {% if result.prediction.confidence_level == 'high' %}#4a7c59{% elif result.prediction.confidence_level == 'medium' %}#705c30{% else %}#b83230{% endif %};"></div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 px-6 text-sm text-[#4a4e4a]">
+                                            {{ entry.timestamp[:10] }}<br/>
+                                            <span class="text-xs text-[#74796e]">{{ entry.timestamp[11:16] }}</span>
+                                        </td>
+                                        <td class="py-4 px-6">
+                                            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#f0e8db] text-[#5e5548] text-xs font-bold border border-[#c4c8bc]">
+                                                <span class="material-symbols-outlined text-[14px]" data-icon="layers">layers</span> Batch {{ entry.id[:6] }}
+                                            </span>
+                                        </td>
+                                        <td class="py-4 px-6 text-right">
+                                            <div class="flex justify-end gap-2 transition-opacity">
+                                                <button onclick="viewBatchDetails('{{ entry.id }}')" class="p-2 rounded-lg hover:bg-[#f0ece4] text-[#4a4e4a] hover:text-[#4a7c59] transition-colors">
+                                                    <span class="material-symbols-outlined text-[20px]" data-icon="visibility">visibility</span>
+                                                </button>
+                                                <a href="{{ result.image_url if 'http' in result.image_url else url_for('upload.uploaded_images', filename=result.image_filename) }}" download class="p-2 rounded-lg hover:bg-[#f0ece4] text-[#4a4e4a] hover:text-[#4a7c59] transition-colors inline-block">
+                                                    <span class="material-symbols-outlined text-[20px]" data-icon="download">download</span>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="7" class="py-8 text-center text-[#4a4e4a]">
+                                No diagnostic history found.
+                            </td>
+                        </tr>
+                    {% endif %}
+                    </tbody>
+                </table>
+            </div>
+            <!-- Table Pagination -->
+            <div class="px-6 py-4 border-t border-[#e4e0d8] flex items-center justify-between bg-[#f5f1ea]/50">
+                <span class="text-sm text-[#4a4e4a]">Showing all records</span>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Details Modal -->
+<div id="details-modal" class="fixed inset-0 z-50 hidden bg-black/40 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-[#faf6f0] rounded-3xl w-full max-w-2xl max-h-[90vh] overflow-y-auto shadow-2xl relative">
+        <button onclick="closeModal()" class="absolute top-4 right-4 p-2 text-[#4a4e4a] hover:bg-[#f0ece4] rounded-full transition-colors">
+            <span class="material-symbols-outlined">close</span>
+        </button>
+        <div id="modal-content" class="p-8"></div>
+    </div>
+</div>
+
+<script>
+    // Include the batch history viewer and filtering logic
+    const historyData = {{ history | tojson | safe }};
+
+    function closeModal() {
+        document.getElementById('details-modal').classList.add('hidden');
+    }
+
+    function viewBatchDetails(batchId) {
+        const entry = historyData.find(h => h.id === batchId);
+        if (!entry) return;
+
+        const modal = document.getElementById('details-modal');
+        const content = document.getElementById('modal-content');
+
+        let resultsHtml = '';
+        entry.results.forEach(result => {
+            const imgUrl = result.image_url && result.image_url.startsWith('http') ? result.image_url : '/uploadimages/' + result.image_filename;
+            resultsHtml += `
+                <div class="bg-[#f0ece4] rounded-2xl p-4 mb-4 border border-[#c4c8bc]/30 shadow-sm text-sm">
+                    <div class="flex items-start gap-4">
+                        <img src="${imgUrl}" alt="Specimen ${result.index}" class="w-16 h-16 object-cover rounded-xl shadow-inner">
+                        <div class="flex-1">
+                            <h5 class="font-bold text-[#2e3230] mb-1">${result.prediction.name}</h5>
+                            <p class="text-[10px] uppercase tracking-widest text-[#4a4e4a] mb-2">Specimen ID: ${result.specimen_id || 'PH-00' + result.index}</p>
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="text-xs uppercase font-bold text-[#4a4e4a]">Confidence:</span>
+                                <span class="px-2 py-1 bg-[#eae6de] rounded-lg text-xs font-bold text-[#4a7c59]">${result.prediction.confidence}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+
+        content.innerHTML = `
+            <div class="space-y-6">
+                <div class="text-center font-body">
+                    <div class="w-16 h-16 bg-[#78a886] rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="material-symbols-outlined text-[#d8f0de] text-2xl">collections</span>
+                    </div>
+                    <h4 class="text-2xl font-headline font-bold text-[#2e3230] mb-1">Batch Analysis Results</h4>
+                    <p class="text-[#4a4e4a] uppercase tracking-widest text-xs">Batch ID: ${batchId.substring(0, 8)} • ${entry.total_images} images</p>
+                </div>
+                <div>
+                    <h5 class="font-bold text-[#2e3230] uppercase tracking-widest text-xs mb-4">Detailed Results</h5>
+                    ${resultsHtml}
+                </div>
+            </div>
+        `;
+        modal.classList.remove('hidden');
+    }
+
+    document.getElementById('details-modal').addEventListener('click', (e) => {
+        if (e.target.id === 'details-modal') {
+            closeModal();
+        }
+    });
+    
+    // JS Filter implementation
+    function filterCards() {
+        const dFilter = document.getElementById('disease-filter').value.toLowerCase();
+        const cFilter = document.getElementById('confidence-filter').value.toLowerCase();
+        
+        const rows = document.querySelectorAll('tr.data-card');
+        rows.forEach(row => {
+            const disease = row.getAttribute('data-disease').toLowerCase();
+            const conf = row.getAttribute('data-confidence-level').toLowerCase();
+            
+            let show = true;
+            if(dFilter && !disease.includes(dFilter)) show = false;
+            if(cFilter && cFilter !== 'all' && conf !== cFilter) show = false;
+            
+            row.style.display = show ? '' : 'none';
+        });
+    }
+    
+    document.getElementById('disease-filter').addEventListener('input', filterCards);
+    document.getElementById('confidence-filter').addEventListener('change', filterCards);
+    document.getElementById('clear-history-filters').addEventListener('click', () => {
+        document.getElementById('disease-filter').value = '';
+        document.getElementById('confidence-filter').value = '';
+        filterCards();
+    });
+</script>
+{% endblock %}
